@@ -2,8 +2,9 @@ package main
 
 import (
 	"flag"
-	// "fmt"
-	// lab2 "github.com/G-V-G/l2"
+	"strings"
+	"os"
+	lab2 "github.com/G-V-G/l2"
 )
 
 var (
@@ -13,7 +14,15 @@ var (
 
 func main() {
 	flag.Parse()
-
+	// handler := lab2.ComputeHandler{Input: strings.NewReader("2 5 +"), Output: os.Stdout}
+	nf, _ := os.Create(`go-file.txt`)
+	handler := lab2.ComputeHandler{Input: strings.NewReader("2 5 7 ^ +"), Output: nf}
+	// nf, _ := os.Open(`go-file.txt`)
+	// handler := lab2.ComputeHandler{Input: nf, Output: os.Stdout}
+	err := handler.Compute()
+	if err != nil {
+		panic(err)
+	}
 	// TODO: Change this to accept input from the command line arguments as described in the task and
 	//       output the results using the ComputeHandler instance.
 	//       handler := &lab2.ComputeHandler{

@@ -1,12 +1,32 @@
 package lab2
 
-// ComputeHandler should be constructed with input io.Reader and output io.Writer.
-// Its Compute() method should read the expression from input and write the computed result to the output.
+import (
+	"strings"
+	"io"
+	"io/ioutil"
+)
+
+// ComputeHandler prefix to infix interpreter
 type ComputeHandler struct {
-	// TODO: Add necessary fields.
+	Input io.Reader
+	Output io.Writer
 }
 
-// func (ch *ComputeHandler) Compute() error {
-// 	// TODO: Implement.
-// 	return nil
-// }
+// Compute prefix to infix wrapper
+func (ch *ComputeHandler) Compute() error {
+	buf, readErr := ioutil.ReadAll(ch.Input)
+	if readErr != nil {
+		return readErr
+	}
+	strInput := strings.Trim(string(buf), "\n")
+	computed, computeErr := PostfixToInfix(strInput)
+	if computeErr != nil {
+		return computeErr
+	}
+	res := []byte(computed + "\n")
+	_, writeErr := ch.Output.Write(res)
+	if writeErr != nil {
+		return writeErr
+	}
+	return nil
+}
