@@ -3,6 +3,7 @@ package lab2
 import (
 	"strings"
 	"io"
+	"fmt"
 	"io/ioutil"
 )
 
@@ -14,6 +15,12 @@ type ComputeHandler struct {
 
 // Compute prefix to infix wrapper
 func (ch *ComputeHandler) Compute() error {
+	if ch.Input == nil {
+		return fmt.Errorf("input is not specified");
+	}
+	if ch.Output == nil {
+		return fmt.Errorf("output is not specified");
+	}
 	buf, readErr := ioutil.ReadAll(ch.Input)
 	if readErr != nil {
 		return readErr

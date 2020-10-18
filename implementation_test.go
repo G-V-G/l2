@@ -6,13 +6,13 @@ import (
 	. "gopkg.in/check.v1"
 )
 
-func Test (t *testing.T) { TestingT(t) }
+func TestImplementation (t *testing.T) { TestingT(t) }
 
-type MySuite struct{}
+type ImplementationSuite struct{}
 
-var _ = Suite(&MySuite{})
+var _ = Suite(&ImplementationSuite{})
 
-func (s *MySuite) TestPostfixToInfix (c *C) {
+func (s *ImplementationSuite) TestPostfixToInfix (c *C) {
 	examples := map[string]string {
 		"345 34.902 + 23 /": "(345 + 34.902) / 23",
 		"300000004 45 +": "300000004 + 45",

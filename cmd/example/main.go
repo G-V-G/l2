@@ -5,6 +5,7 @@ import (
 	"strings"
 	"os"
 	lab2 "github.com/G-V-G/l2"
+	"bytes"
 )
 
 var (
