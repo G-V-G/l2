@@ -8,11 +8,7 @@ import (
 
 func TestImplementation (t *testing.T) { TestingT(t) }
 
-type ImplementationSuite struct{}
-
-var _ = Suite(&ImplementationSuite{})
-
-func (s *ImplementationSuite) TestPostfixToInfix (c *C) {
+func (s *TestSuite) TestPostfixToInfix (c *C) {
 	examples := map[string]string {
 		"345 34.902 + 23 /": "(345 + 34.902) / 23",
 		"300000004 45 +": "300000004 + 45",
