@@ -1,7 +1,6 @@
 package lab2
 
 import (
-	//"fmt"
 	"bytes"
 	"strings"
 	"testing"
@@ -10,12 +9,8 @@ import (
 
 func TestCompute (t *testing.T) { TestingT(t) }
 
-type ComputeSuite struct{}
-
-var _ = Suite(&ComputeSuite{})
-
-func (s *ComputeSuite) TestComputeOutput (c *C) {
-	inputStr, expected := "2 5 7 ^ +", "2 + 5 ^ 7"
+func (s *TestSuite) TestComputeOutput (c *C) {
+	inputStr, expected := "2 5 7 ^ +", "2 + 5 ^ 7\n"
 	buf := new(bytes.Buffer)
 	reader:= strings.NewReader(inputStr)
 	handler := ComputeHandler{Input: reader, Output: buf}
@@ -23,7 +18,7 @@ func (s *ComputeSuite) TestComputeOutput (c *C) {
 	c.Assert(buf.String(), Equals, expected)
 }
 
-func (s *ComputeSuite) TestComputeSyntax (c *C) {
+func (s *TestSuite) TestComputeSyntax (c *C) {
 	errorExamples := map[string] ComputeHandler {
 		"input is not specified": ComputeHandler{},
 		"output is not specified": ComputeHandler{Input: strings.NewReader("2 4 +")},
