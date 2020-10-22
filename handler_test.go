@@ -15,7 +15,7 @@ type ComputeSuite struct{}
 var _ = Suite(&ComputeSuite{})
 
 func (s *ComputeSuite) TestComputeOutput (c *C) {
-	inputStr, expected := "2 5 7 ^ +", "2 + 5 ^ 7\n"
+	inputStr, expected := "2 5 7 ^ +", "2 + 5 ^ 7"
 	buf := new(bytes.Buffer)
 	reader:= strings.NewReader(inputStr)
 	handler := ComputeHandler{Input: reader, Output: buf}
